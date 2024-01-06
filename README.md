@@ -11,7 +11,7 @@
 ## Пример использования
 
 ```csharp
-using HTMLBuilder;
+using HtmlBuilder;
 
 class Program
 {
