@@ -1,15 +1,15 @@
 # HTML Builder Library
 
-Эта библиотека представляет собой инструмент для создания HTML документов на языке C#. Она позволяет программистам динамически создавать HTML-код, облегчая процесс генерации веб-страниц прямо из кода.
+This library is a tool for creating HTML documents in C#. It allows programmers to dynamically generate HTML code, making it easier to generate web pages directly from code.
+## Installation
+Download the dll file from the latest release: [Last Release](https://github.com/Ficksik/html_builder/releases/tag/v1)
 
-## Особенности
+## Peculiarities
 
-- **Простота использования:** Простой и интуитивно понятный интерфейс для создания HTML элементов и их атрибутов.
-- **Гибкость и настраиваемость:** Возможность создавать как простые, так и сложные HTML структуры, а также добавлять пользовательские атрибуты и стили.
-- **Консистентность:** Безопасное формирование HTML кода с помощью объектов C# для предотвращения ошибок.
+- **Ease of use:** Simple and intuitive interface for creating HTML elements and their attributes.
+- **Flexibility and Customizability:** Ability to create both simple and complex HTML structures, as well as add custom attributes and styles.
 
-## Пример использования
-
+## Usage example
 ```csharp
 using HTMLBuilder;
 
@@ -50,11 +50,10 @@ class Program
         table.Add(new THeadElement("Prop","Value"));
         
         var tbody = new TBodyElement()
-            .AddRow("Сейчас присоединено клиентов", ServerLogic.ConnectionsCount.ToString())
-            .AddRow( "Кол-во комнат на сервере", ServerLogic.LobbyManager.GetRoomsCount.ToString())
-            .AddRow( "Макс. кол-во комнат в лобби одновременно", Statistic.MaxRoomsInLobby.ToString())
-            .AddRow("Макс. кол-во игроков на сервере одновременно", Statistic.MaxPlayers.ToString())
- 
+           .AddRow( "Currently connected clients", ServerLogic.ConnectionsCount.ToString())
+           .AddRow( "Number of rooms on server", ServerLogic.LobbyManager.GetRoomsCount.ToString())
+           .AddRow( "Max. number of rooms in the lobby at the same time", Statistic.MaxRoomsInLobby.ToString())
+           .AddRow( "Max. number of players on the server at the same time", Statistic.MaxPlayers.ToString())
         table.Add(tbody);
         figure.Add(table);
         
@@ -63,6 +62,17 @@ class Program
     }
 }
 ```
-## Вклад и обратная связь
+You can also set each element Text, Class, Href, Style, just assign values to these fields
 
-Мы приветствуем любые предложения и улучшения! Если у вас есть идеи или обнаружены ошибки, пожалуйста, создайте issue или pull request в этом репозитории.
+## Custom Elements
+Inherit your element from **HtmlBaseElement(string openingTag, string closingTag)** like:
+```csharp
+public class AElement : HtmlBaseElement
+{
+    public AElement() : base("<a>", "</a>") {}
+}
+```
+
+## Contribution and feedback
+
+We welcome any suggestions and improvements! If you have ideas or find bugs, please create an issue or pull request in this repository.
